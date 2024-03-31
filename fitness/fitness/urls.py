@@ -20,5 +20,6 @@ from rest_framework.urlpatterns import path
 from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('nutrition_api/',ApiHitView.as_view(),name="apihitview"),
+    path('nutrition_api/',NutritionEstimateView.as_view(),name="nutrition_estimate"),
+    path('quantity_api/',QuantityEstimateView.as_view(),name="quantity_estimate"),
 ]
