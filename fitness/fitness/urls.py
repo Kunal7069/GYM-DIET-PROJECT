@@ -21,5 +21,9 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('nutrition_api/',NutritionEstimateView.as_view(),name="nutrition_estimate"),
+    path('',home,name="home"),
+    path('submit/',submit,name="home"),
     path('quantity_api/',QuantityEstimateView.as_view(),name="quantity_estimate"),
+    path('recipe_api/',NutrientsWiseRecipeView.as_view(),name="recipe_estimate"),
+    
 ]

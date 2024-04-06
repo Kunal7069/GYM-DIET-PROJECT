@@ -1,0 +1,20 @@
+<h1>HOME</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Form</title>
+</head>
+<body>
+    <h2>Enter Name and Roll Number</h2>
+    <form action="/submit/" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="roll">Roll Number:</label><br>
+        <input type="text" id="rollno" name="rollno" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
