@@ -25,5 +25,6 @@ urlpatterns = [
     path('submit/',submit,name="home"),
     path('quantity_api/',QuantityEstimateView.as_view(),name="quantity_estimate"),
     path('recipe_api/',NutrientsWiseRecipeView.as_view(),name="recipe_estimate"),
+    path('integrients_recipe_api/',IndigreintsWiseRecipeView.as_view(),name="integrients_recipe_api/"),
     
 ]
