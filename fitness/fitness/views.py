@@ -62,10 +62,12 @@ class IndigreintsWiseRecipeView(ListAPIView):
         }
 
         response = requests.get(url, headers=headers, params=querystring)
+        recipe_name=[]
+        for i in response.json():
+            recipe_name.append(i['title'])
+        print(recipe_name)
 
-        print(response.json())
-
-        return Response(response.json())
+        return Response(recipe_name)
 
 def home(request):
     return render(request,"home.html")    
