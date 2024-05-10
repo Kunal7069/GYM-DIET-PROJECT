@@ -26,6 +26,18 @@ class QuantityEstimateView(ListAPIView):
         response = requests.get(url).json()
         return HttpResponse(str(required_nutrient_quantity/response['totalNutrients'][nutrient]['quantity']) +' kg')
 
+class BMIEstimateView(ListAPIView):
+    def post(self, request, *args, **kwargs):
+        data=request.data
+        url = "https://fitness-calculator.p.rapidapi.com/dailycalorie"
+        headers = {
+            "X-RapidAPI-Key": "382981c608msh170d9a68a9e2d23p16cae3jsn9ff8c6c64807",
+            "X-RapidAPI-Host": "fitness-calculator.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers, params=data).json()
+        print(response.json())
+        return Response(response)
+
 class NutrientsWiseRecipeView(ListAPIView):
     def get(self, request, *args, **kwargs):
         url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByNutrients"
@@ -61,7 +73,7 @@ class IndigreintsWiseRecipeView(ListAPIView):
         querystring = {"ingredients":"paneer,peas","number":"100","ignorePantry":"true","ranking":"1"}
 
         headers = {
-            "X-RapidAPI-Key": "1af44b5713msh957ce7c530ad6aep123865jsn053a43fc74e8",
+            "X-RapidAPI-Key": "e9329138813f4cbcb64e8e5b61edbfdf",
             "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
         }
 

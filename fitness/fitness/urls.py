@@ -26,5 +26,6 @@ urlpatterns = [
     path('quantity_api/',QuantityEstimateView.as_view(),name="quantity_estimate"),
     path('recipe_api/',NutrientsWiseRecipeView.as_view(),name="recipe_estimate"),
     path('integrients_recipe_api/',IndigreintsWiseRecipeView.as_view(),name="integrients_recipe_api/"),
+    path('bmi_estimate_api/',BMIEstimateView.as_view(),name="bmi_estimate"),
     
 ]
