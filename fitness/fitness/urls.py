@@ -21,11 +21,12 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('nutrition_api/',NutritionEstimateView.as_view(),name="nutrition_estimate"),
-    path('',home,name="home"),
-    path('submit/',submit,name="home"),
+    path('calorie_intake/',CalorieIntake.as_view(),name="calorie_intake"),
+    path('calorie_distribution/',CalorieDistribution.as_view(),name="calorie_distribution"),
+    path('similar_food/',SimilarFood.as_view(),name="similar_food"),
     path('quantity_api/',QuantityEstimateView.as_view(),name="quantity_estimate"),
     path('recipe_api/',NutrientsWiseRecipeView.as_view(),name="recipe_estimate"),
-    path('integrients_recipe_api/',IndigreintsWiseRecipeView.as_view(),name="integrients_recipe_api/"),
+    path('integrients_recipe_api/',IndigreintsWiseRecipeView.as_view(),name="integrients_recipe_api"),
     path('bmi_estimate_api/',BMIEstimateView.as_view(),name="bmi_estimate"),
     
 ]
