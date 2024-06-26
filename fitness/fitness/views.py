@@ -7,14 +7,34 @@ import requests
 from rest_framework.generics import ListAPIView
 import http.client
 
+# class NutritionEstimateView(ListAPIView):
+#     def post(self, request, *args, **kwargs):
+#         data=request.data
+#         food_item=data['food']
+#         url = f'https://api.edamam.com/api/nutrition-data?app_id=21b4ee87&app_key=a0a287ed2537403d3c5b4a4d89e14091&nutrition-type=cooking&ingr={food_item}'
+#         response = requests.get(url).json()
+#         return Response(response['calories'])
 class NutritionEstimateView(ListAPIView):
     def post(self, request, *args, **kwargs):
         data=request.data
         food_item=data['food']
-        url = f'https://api.edamam.com/api/nutrition-data?app_id=21b4ee87&app_key=a0a287ed2537403d3c5b4a4d89e14091&nutrition-type=cooking&ingr={food_item}'
-        response = requests.get(url).json()
-        return Response(response)
-
+        string_2=[]
+        str=''
+        for i in food_item:
+            if i==',':
+                string_2.append(str)
+                str=''
+            if i!=',':  
+                str=str+i
+        print(string_2)
+        calorie=0
+        for i in string_2:
+            url = f'https://api.edamam.com/api/nutrition-data?app_id=21b4ee87&app_key=a0a287ed2537403d3c5b4a4d89e14091&nutrition-type=cooking&ingr={i}'
+            response = requests.get(url).json()
+            print(i,response['calories'])
+            calorie=calorie+response['calories']
+        # return Response(response['calories'])
+        return Response(calorie)
 class SimilarFood(ListAPIView):
     def post(self, request, *args, **kwargs):
         data=request.data
