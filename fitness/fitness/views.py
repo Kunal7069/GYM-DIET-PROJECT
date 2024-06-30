@@ -5,6 +5,7 @@ from django.shortcuts import render
 from model.models import *
 import requests
 from rest_framework.generics import ListAPIView
+import pandas as pd
 import http.client
 
 # class NutritionEstimateView(ListAPIView):
@@ -15,26 +16,29 @@ import http.client
 #         response = requests.get(url).json()
 #         return Response(response['calories'])
 class NutritionEstimateView(ListAPIView):
-    def post(self, request, *args, **kwargs):
-        data=request.data
-        food_item=data['food']
-        string_2=[]
-        str=''
-        for i in food_item:
-            if i==',':
-                string_2.append(str)
-                str=''
-            if i!=',':  
-                str=str+i
-        print(string_2)
-        calorie=0
-        for i in string_2:
-            url = f'https://api.edamam.com/api/nutrition-data?app_id=21b4ee87&app_key=a0a287ed2537403d3c5b4a4d89e14091&nutrition-type=cooking&ingr={i}'
-            response = requests.get(url).json()
-            print(i,response['calories'])
-            calorie=calorie+response['calories']
-        # return Response(response['calories'])
-        return Response(calorie)
+    def get(self, request, *args, **kwargs):
+        file_path = 'C:/Users/jaink/Downloads/Book1.xlsx'
+        df = pd.read_excel(file_path)
+        recipes_list=df.iloc[:,0].tolist()
+        calories=[]
+        for z in recipes_list:
+            string_2=[]
+            str=''
+            for i in z:
+                if i==',':
+                    string_2.append(str)
+                    str=''
+                if i!=',':  
+                    str=str+i
+            print(string_2)
+            calorie=0
+            for i in string_2:
+                url = f'https://api.edamam.com/api/nutrition-data?app_id=21b4ee87&app_key=a0a287ed2537403d3c5b4a4d89e14091&nutrition-type=cooking&ingr={i}'
+                response = requests.get(url).json()
+                calorie=calorie+response['calories']
+            calories.append(calorie)
+            # return Response(response['calories'])
+        return Response(calories)
 class SimilarFood(ListAPIView):
     def post(self, request, *args, **kwargs):
         data=request.data
