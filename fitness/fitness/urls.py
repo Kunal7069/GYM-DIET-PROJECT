@@ -27,6 +27,10 @@ urlpatterns = [
     path('quantity_api/',QuantityEstimateView.as_view(),name="quantity_estimate"),
     path('recipe_api/',NutrientsWiseRecipeView.as_view(),name="recipe_estimate"),
     path('integrients_recipe_api/',IndigreintsWiseRecipeView.as_view(),name="integrients_recipe_api"),
+    path('save_data/',SaveData.as_view(),name="save_data"),
+    path('save_food/',SaveFood.as_view(),name="save_food"),
+    path('get_user/',GetUser.as_view(),name="get_user"),
+    path('get_food/',GetFood.as_view(),name="get_food"),
     path('bmi_estimate_api/',BMIEstimateView.as_view(),name="bmi_estimate"),
     
 ]
