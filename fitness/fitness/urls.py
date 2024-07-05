@@ -31,6 +31,7 @@ urlpatterns = [
     path('save_food/',SaveFood.as_view(),name="save_food"),
     path('get_user/',GetUser.as_view(),name="get_user"),
     path('get_food/',GetFood.as_view(),name="get_food"),
+    path('image_food/',ImageFood.as_view(),name="image_food"),
     path('bmi_estimate_api/',BMIEstimateView.as_view(),name="bmi_estimate"),
     
 ]
